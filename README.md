@@ -6,6 +6,24 @@ The process involves two main types of contracts: `Factory` and `Implement`. The
 
 A key functionality of this system is its use of the self-destruct feature. By self-destructing the `Factory` and `Implement` contracts and then redeploying the `Implement` contract, we can reset the nonce of the `Factory` to zero. This nonce reset enables the redeployment of the `Implement` contract at the same address but with different bytecode, maintaining the address continuity while allowing for contract upgrades or modifications.
 
+## Methods
+
+### create3
+
+```solidity
+function create3(bytes memory implementBytecode) external onlyOwner;
+```
+
+This method is used to deploy the `Factory` and `Implement` contracts. It first checks if the `Factory` contract already exists; if not, it re-deploy the `Factory` contract using the `create2` method and then deploys the `Implement` contract using the `create1` method.
+
+### destruct
+
+```solidity
+function destruct() external onlyOwner;
+```
+
+This method enables the destruction of the `Factory` and `Implement` contracts. It checks if the `Factory` contract exists and, if so, triggers its self-destruct mechanism. This process effectively removes both the `Factory` and `Implement` contracts from the blockchain.
+
 ## Prerequisites
 
 - Node.js v14+ LTS and npm (comes with Node)
