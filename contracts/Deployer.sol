@@ -5,6 +5,9 @@ import "./Factory.sol";
 
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 
+/**
+ * @title Deployer Contract.
+ */
 contract Deployer is OwnableUpgradeable {
     event FactoryCreated(address indexed factory);
 
@@ -30,6 +33,10 @@ contract Deployer is OwnableUpgradeable {
         __Ownable_init();
     }
 
+    /**
+     * @dev Deploys the Factory and Implement contracts.
+     * @param implementBytecode The bytecode of the Implement contract to be deployed.
+     */
     function create3(bytes memory implementBytecode) external onlyOwner {
         require(address(factory) == address(0), "Factory already exists.");
         factory = IFactory(create2());
@@ -37,6 +44,10 @@ contract Deployer is OwnableUpgradeable {
         factory.create1(implementBytecode);
     }
 
+    /**
+     * @dev Destructs the Factory and Implement contracts.
+     * This function triggers the self-destruct.
+     */
     function destruct() external onlyOwner {
         require(address(factory) != address(0), "No factory to destruct.");
         factory.destruct();
@@ -44,6 +55,10 @@ contract Deployer is OwnableUpgradeable {
         factory = IFactory(address(0));
     }
 
+    /**
+     * @dev Creates the Factory contract instance using the CREATE2 opcode for deterministic addresses.
+     * @return _factory Address of the created Factory contract.
+     */
     function create2() internal returns (address _factory) {
         bytes memory factoryBytecode = FACTORY_BYTECODE;
         assembly {
@@ -68,6 +83,11 @@ contract Deployer is OwnableUpgradeable {
         emit FactoryCreated(_factory);
     }
 
+    /**
+     * @dev Computes the address of the Factory contract based on the current Deployer contract address and salt.
+     * This function calculates the expected address of the Factory contract.
+     * @return factory The computed address of the Factory contract.
+     */
     function computeAddress() external view returns (address) {
         return _computeAddress();
     }
