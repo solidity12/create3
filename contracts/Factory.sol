@@ -3,6 +3,9 @@ pragma solidity ^0.8.9;
 
 import "./interfaces/IFactory.sol";
 
+/**
+ * @title Factory contract.
+ */
 contract Factory {
     event ImplementCreated(address indexed implement);
 
@@ -14,6 +17,11 @@ contract Factory {
         deployer = msg.sender;
     }
 
+    /**
+     * @dev Deploys a new Implement contract.
+     * @param _implementBytecode The bytecode of the Implement contract to be deployed.
+     * @return _implement The address of the newly deployed Implement contract.
+     */
     function create1(
         bytes memory _implementBytecode
     ) external onlyDeployer returns (address _implement) {
@@ -29,6 +37,10 @@ contract Factory {
         emit ImplementCreated(implement);
     }
 
+    /**
+     * @dev Destructs the Implement contract.
+     * This function triggers the self-destruct.
+     */
     function destruct() external onlyDeployer {
         IDestruct(implement).destruct();
         selfdestruct(payable(deployer));
