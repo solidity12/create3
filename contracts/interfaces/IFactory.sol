@@ -4,7 +4,7 @@ pragma solidity ^0.8.9;
 import "./IDestruct.sol";
 
 /**
- * @title IFactory Interface
+ * @title IFactory Interface.
  * @dev Interface for the Factory contract.
  */
 interface IFactory is IDestruct {

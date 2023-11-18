@@ -2,7 +2,7 @@
 pragma solidity ^0.8.9;
 
 /**
- * @title IDestruct Interface
+ * @title IDestruct Interface.
  * @dev Interface for the Destruct contract.
  */
 interface IDestruct {
