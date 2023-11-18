@@ -16,4 +16,24 @@ module.exports = {
       }
     }, ],
   },
+  networks: {
+    hardhat: {
+      allowUnlimitedContractSize: true,
+      forking: {
+        url : "https://api.wemix.com",
+        // url: "https://api.test.wemix.com",
+      },
+    },
+    localhost: {
+      url: "http://127.0.0.1:8545",
+    },
+    wemix: {
+      url: "https://api.wemix.com",
+      chainId: 1111,
+    },
+    wemixtestnet: {
+      url: "https://api.test.wemix.com",
+      chainId: 1112,
+    },
+  },
 };
