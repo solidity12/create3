@@ -22,13 +22,6 @@ interface IDeployer is IDestruct {
     function create3(bytes memory implementBytecode) external;
 
     /**
-     * @dev Creates the Factory contract instance using the CREATE2 opcode for deterministic addresses.
-     * This is an internal function and part of the create3 method's implementation.
-     * @return factory Address of the created Factory contract.
-     */
-    function create2() external returns (address factory);
-
-    /**
      * @dev Computes the address of the Factory contract based on the current Deployer contract address and salt.
      * This function calculates the expected address of the Factory contract.
      * @return factory The computed address of the Factory contract.

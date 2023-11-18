@@ -2,15 +2,14 @@
 pragma solidity ^0.8.9;
 
 import "./Factory.sol";
+import "./interfaces/IDeployer.sol";
 
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 
 /**
  * @title Deployer Contract.
  */
-contract Deployer is OwnableUpgradeable {
-    event FactoryCreated(address indexed factory);
-
+contract Deployer is IDeployer, OwnableUpgradeable {
     IFactory public factory;
 
     bytes public FACTORY_BYTECODE;
