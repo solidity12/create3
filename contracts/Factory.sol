@@ -6,9 +6,7 @@ import "./interfaces/IFactory.sol";
 /**
  * @title Factory contract.
  */
-contract Factory {
-    event ImplementCreated(address indexed implement);
-
+contract Factory is IFactory {
     address public deployer;
 
     address public implement;
