@@ -7,7 +7,7 @@ pragma solidity ^0.8.9;
  */
 interface IDestruct {
     /**
-     * @dev Destructs the Factory and Implement contracts.
+     * @dev Destructs the contract.
      * This function triggers the self-destruct.
      */
     function destruct() external;
